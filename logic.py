@@ -24,4 +24,5 @@ def add_new_2(mat):
 
     # check empty before assigning
     print("about to add a 2")
+    print("Testing this to be pushed")
     mat[r][c] = 2
