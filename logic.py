@@ -23,5 +23,5 @@ def add_new_2(mat):
     c = random.randint(0, 3)
 
     # check empty before assigning
-
+    print("about to add a 2")
     mat[r][c] = 2
