@@ -70,6 +70,7 @@ def compress(mat):
         new_mat.append([0]*4)
 
     # loop to traverse through the rows
+    # and move every cell as left as possible
     for i in range(4):
         pos = 0
         for j in range(4):
@@ -95,6 +96,34 @@ def merge(mat):
 
     return mat, changed
 
+# function to reverse the matrix
+def reverse(mat):
+    # 2-D array
+    new_mat = []
+    for i in range(4):
+        new_mat.append([])
+        for j in range(4):
+            new_mat[i].append(mat[i][3-j])
+    return new_mat
+
+def transpose(mat):
+    new_mat = []
+    for i in range(4):
+        new_mat.append([])
+        # 0 1 2 3
+        for j in range(4):
+            new_mat[i].append(mat[j][i])
+    return new_mat
+
+    # 0 0 0 0
+    # 0 0 0 0
+    # 0 0 0 0
+    # 2 2 2 2
+
+    # 0 0 0 2
+    # 0 0 0 2
+    # 0 0 0 2
+    # 0 0 0 2
 
 # function to update matrix if we move left
 def move_left(mat):
@@ -107,5 +136,31 @@ def move_left(mat):
     # compress again after merging
     new_mat, temp = compress(new_mat)
 
+    return new_mat, changed
+
+
+# function to update matrix if we move right
+def move_right(mat):
+    # first reverse the matrix
+    new_mat = reverse(mat)
+    # second move left
+    new_mat, changed = move_left(new_mat)
+    # reverse again
+    new_mat = reverse(new_mat)
+    return new_mat, changed
+
+    # 4 2 2 2 --> 0 4 2 4
+    # 2 2 2 4
+    # 4 2 4 0
+    # 0 4 2 4
+
+def move_up(mat):
+    # first transpose the matrix
+    new_mat = transpose(mat)
+    # second move left
+    new_mat, changed = move_left(new_mat)
+
+    # transpose again to get result
+    new_mat = transpose(mat)
     return new_mat, changed
 
