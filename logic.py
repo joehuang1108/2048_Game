@@ -14,6 +14,13 @@ def start_game():
     for i in range(4):
         mat.append([0] * 4)
 
+    # print instructions
+    print("These are the commands for this game: ")
+    print("W: Move Up")
+    print("A: Move Left")
+    print("S: Move Down")
+    print("D: Move Right")
+
     add_new_2(mat)
     return mat
 
@@ -161,6 +168,14 @@ def move_up(mat):
     new_mat, changed = move_left(new_mat)
 
     # transpose again to get result
-    new_mat = transpose(mat)
+    new_mat = transpose(new_mat)
     return new_mat, changed
 
+def move_down(mat):
+    # first transpose the matrix
+    new_mat = transpose(mat)
+    # second move right
+    new_mat, changed = move_right(new_mat)
+    # transpose again to get result
+    new_mat = transpose(new_mat)
+    return new_mat, changed
